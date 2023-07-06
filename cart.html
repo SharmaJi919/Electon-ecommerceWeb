@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Shopping Cart - Cart Page</title>
+  <style>
+    /* Styles remain the same as before */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #cart-table {
+      width: 60%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      
+    }
+
+    #cart-table th,
+    #cart-table td {
+      padding: 10px;
+      text-align: center;
+    }
+    #cart-table td{
+        border-bottom: 1px solid #b0b4b0; 
+       
+
+    }
+    .quantity-input{
+        background-color:  #d6dbd6;
+        max-width: 10%;
+        max-height: 10%;
+        border: none;
+        border-radius: 5px;
+    }
+
+    #cart-table th {
+      background-color:#e2f4ff;
+    }
+
+    #cart-table td img {
+      max-width: 70%;
+      max-height: 70%;
+      object-fit: cover;
+      border-radius: 5px;
+      
+    }
+
+    .quantity-button {
+      padding: 1px 3px;
+      background-color: #bab7b6;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .quantity-button:hover {
+      background-color: #b0b4b0;
+    }
+
+    .quantity-button:active {
+      background-color: #b0b4b0;
+    }
+
+    .remove-icon:hover {
+      background-color: #b0b4b0;
+    }
+
+    .remove-icon:active {
+      background-color: #b0b4b0;
+    }
+
+    .remove-icon {
+      padding: 5px 5px;
+      background-color: #bab7b6;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    button:active {
+      background-color: #3d8f3d;
+    }
+
+    /* .cart-total-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-top: 20px;
+      width: 60%;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+
+    .cart-total-container p {
+      margin: 5px 0;
+      text-align: right;
+    }
+
+    .cart-total-container label {
+      font-weight: bold;
+    }
+
+    .cart-total-container input[type="text"] {
+      padding: 5px;
+      margin-right: 10px;
+      text-align: right;
+    }
+
+    .cart-total-container button#apply-coupon {
+      padding: 5px 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .cart-total-container button#apply-coupon:hover {
+      background-color: #45a049;
+    }
+
+    .cart-total-container button#apply-coupon:active {
+      background-color: #3d8f3d;
+    } */
+
+    .cart-total-container {
+  margin-top: 20px;
+}
+
+.cart-total-container table {
+  width: 30%;
+  border-collapse: collapse;
+  margin-left: 850px;
+}
+
+.cart-total-container th {
+  background-color: #e2f4ff;
+  padding: 10px;
+  text-align: left;
+}
+
+.cart-total-container td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #b0b4b0;
+}
+
+.cart-total-container input[type="text"] {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.cart-total-container button#apply-coupon {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-total-container button#apply-coupon:hover {
+  background-color: #45a049;
+}
+
+.cart-total-container button#apply-coupon:active {
+  background-color: #3d8f3d;
+}
+
+.cart-total-container button#checkout-btn {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.cart-total-container button#checkout-btn:hover {
+  background-color: #45a049;
+}
+
+.cart-total-container button#checkout-btn:active {
+  background-color: #3d8f3d;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <h1>My Shopping Cart - Cart Page</h1>
+
+  <table id="cart-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <!-- <th>Actions</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Cart items will be dynamically added here -->
+    </tbody>
+  </table>
+
+  <!-- <div class="cart-total-container">
+    <p>
+      <label for="coupon-code">Coupon Code:</label>
+      <input type="text" id="coupon-code" placeholder="Enter coupon code">
+      <button id="apply-coupon">Apply</button>
+    </p>
+    <p>
+      <label for="cart-total">Cart Total:</label>
+      <input type="text" id="cart-total" readonly>
+    </p>
+    <p>
+        <label for="discount-amount">Discount:</label>
+        <input type="text" id="discount-amount" readonly>
+      </p>
+      <p>
+        <label for="total">Total:</label>
+        <input type="text" id="total" readonly>
+      </p>
+    <button id="checkout-btn">Proceed to Checkout</button>
+  </div> -->
+
+  <div class="cart-total-container">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">Cart Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sub Total:</td>
+          <td><input type="text" id="cart-total" readonly></td>
+        </tr>
+        <tr>
+          <td>Apply Coupon Code:</td>
+          <td>
+            <input type="text" id="coupon-code" placeholder="Enter coupon code">
+            <button id="apply-coupon">Apply</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Discount:</td>
+          <td><input type="text" id="discount-amount" readonly></td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td><input type="text" id="total" readonly></td>
+        </tr>
+      </tbody>
+    </table>
+    <button id="checkout-btn">Proceed to Checkout</button>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Dummy cart data (replace with your own data)
+      var cartItems = [
+  
+    {
+        id: 0,
+        name: "MacBook Pro M1 Pro",
+        price: 1999,
+        image: "./image1.jpg",
+        title: "The most powerful MacBook ever",
+        category: "laptops",
+      },
+      {
+        id: 1,
+        name: "Dell XPS 13 Plus",
+        price: 1299,
+        image: "./image1.jpg",
+        title: "The most powerful XPS ever",
+        category: "laptops",
+      },
+      {
+      id: 2,
+      name: "HP Spectre x360",
+      price: 1199,
+      image: "./image1.jpg",
+      title: "The most versatile Spectre ever",
+      category: "laptops",
+    },
+      {
+      id: 3,
+      name: "Lenovo Yoga 9i",
+      price: 1099,
+      image: "./image1.jpg",
+      title: "The most portable Yoga ever",
+      category: "laptops",
+    },
+    {
+      id: 4,
+      name: "Asus ZenBook Duo 14",
+      price: 1399,
+      image: "./image1.jpg",
+      title: "The most innovative ZenBook ever",
+      category: "laptops",
+    },
+    {
+      id: 5,
+      name: "Sony A7 IV",
+      price: 3500,
+      image: "./image1.jpg",
+      title: "The most advanced A7 ever",
+      category: "cameras",
+    },
+    {
+      id: 6,
+      name: "Nikon Z9",
+      price: 5499,
+      image: "./image1.jpg",
+      title: "The most powerful Z ever",
+      category: "cameras",
+    },
+    {
+      id: 7,
+      name: "Canon EOS R5",
+      price: 3899,
+      image: "./image1.jpg",
+      title: "The most versatile EOS R ever",
+      category: "cameras",
+    },
+    {
+      id: 8,
+      name: "Panasonic Lumix S5",
+      price: 2099,
+      image: "./image1.jpg",
+      title: "The most affordable full-frame mirrorless camera",
+      category: "cameras",
+    },
+    {
+      id: 9,
+      name: "Fujifilm X-T4",
+      price: 1699,
+      image: "./image1.jpg",
+      title: "The most advanced X-T ever",
+      category: "cameras",
+    },
+    {
+      id: 10,
+      name: "Apple Watch Series 7",
+      price: 399,
+      image: "./image1.jpg",
+      title: "The most advanced Apple Watch ever",
+      category: "smartwatches",
+    },
+    {
+      id: 11,
+      name: "Samsung Galaxy Watch 4",
+      price: 249,
+      image: "./image1.jpg",
+      title: "The most affordable Galaxy Watch ever",
+      category: "smartwatches",
+    },
+    {
+      id: 12,
+      name: "Garmin Venu 2",
+      price: 399,
+      image: "./image1.jpg",
+      title: "The most versatile Garmin smartwatch",
+      category: "smartwatches",
+    },
+    {
+        id: 13,
+        name: "Fitbit Sense",
+        price: 299,
+        image: "./image1.jpg",
+        title: "The most advanced Fitbit ever",
+        category: "smartwatches",
+      },
+    ];
+    function updateCartTotal() {
+        var cartTotal = 0;
+
+        // Iterate through cart items and calculate total
+        for (var i = 0; i < cartItems.length; i++) {
+          var item = cartItems[i];
+          cartTotal += item.price * item.quantity;
+        }
+
+        // Update the cart total input field
+        $("#cart-total").val("$" + cartTotal.toFixed(2));
+      }
+
+      // Function to generate cart item HTML
+      function generateCartItemHTML(item, index) {
+        var total = item.price * item.quantity;
+
+        var html = "<tr>";
+        html += "<td><img src='" + item.image + "' alt='" + item.name + "'></td>";
+        html += "<td>" + item.name + "</td>";
+        html += "<td>$" + item.price.toFixed(2) + "</td>";
+        html += "<td>";
+        html += "<button class='quantity-button' data-index='" + index + "' data-operation='decrease'>-</button>";
+        html += "<input type='text' class='quantity-input' value='" + item.quantity + "' readonly>";
+        html += "<button class='quantity-button' data-index='" + index + "' data-operation='increase'>+</button>";
+        html += "</td>";
+        html += "<td>$" + total.toFixed(2) + "</td>";
+        html += "<td><button class='remove-icon' data-index='" + index + "'>Remove</button></td>";
+        html += "</tr>";
+
+        return html;
+      }
+
+      // Retrieve cart items from localStorage (or an empty array if not found)
+      var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Function to render the cart items
+      function renderCartItems() {
+        // Clear existing items
+        $("#cart-table tbody").empty();
+
+        // Render new items
+        for (var i = 0; i < cartItems.length; i++) {
+          var item = cartItems[i];
+          var html = generateCartItemHTML(item, i);
+          $("#cart-table tbody").append(html);
+        }
+
+        // Update the cart total
+        updateCartTotal();
+      }
+
+      // Event listener for quantity buttons
+      $(document).on("click", ".quantity-button", function() {
+        var operation = $(this).data("operation");
+        var index = $(this).data("index");
+
+        if (operation === "increase") {
+          cartItems[index].quantity++;
+        } else if (operation === "decrease") {
+          if (cartItems[index].quantity > 1) {
+            cartItems[index].quantity--;
+          }
+        }
+
+        // Re-render the cart items
+        renderCartItems();
+
+        // Update the cart in localStorage
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+      });
+
+      // Event listener for remove button
+      $(document).on("click", ".remove-icon", function() {
+        var index = $(this).data("index");
+        cartItems.splice(index, 1);
+
+        // Re-render the cart items
+        renderCartItems();
+
+        // Update the cart in localStorage
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+      });
+
+       // Event listener for apply coupon button
+       $("#apply-coupon").click(function() {
+        var couponCode = $("#coupon-code").val();
+
+        // Apply coupon logic here
+        // For simplicity, let's assume the coupon code "SAVE10" gives a 10% discount
+
+        // Check if the coupon code is valid
+        if (couponCode === "SAVE10") {
+          // Calculate the discount amount
+          var discount = 0.1 * getTotalCartAmount();
+
+          // Apply the discount to the cart total
+          var cartTotal = getTotalCartAmount() - discount;
+
+          // Update the cart total input field
+          $("#cart-total").val("$" + cartTotal.toFixed(2));
+
+          // Update the discount amount input field
+          $("#discount-amount").val("-$" + discount.toFixed(2));
+           // Update the total input field
+           $("#total").val("$" + cartTotal.toFixed(2));
+        }
+
+        // Clear the input field
+        $("#coupon-code").val("");
+      });
+
+      // Function to calculate the total cart amount
+      function getTotalCartAmount() {
+        var totalAmount = 0;
+
+        for (var i = 0; i < cartItems.length; i++) {
+          var item = cartItems[i];
+          totalAmount += item.price * item.quantity;
+        }
+
+        return totalAmount;
+      }
+
+      // Render the initial cart items
+      renderCartItems();
+    });
+
+  
+      
+  </script>
+</body>
+
+</html>
