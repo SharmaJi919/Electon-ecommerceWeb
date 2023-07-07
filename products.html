@@ -5,10 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Shopping Cart</title>
+  <!-- <style type="text/css">
+    @font-face{
+        font-family:"helvetica";
+        src:url("https://candyfonts.com/wp-data/2018/10/26/11538/HELR45W.ttf") format("woff"),
+        url("https://candyfonts.com/wp-data/2018/10/26/11538/HELR45W.ttf") format("opentype"),
+        url("https://candyfonts.com/wp-data/2018/10/26/11538/HELR45W.ttf") format("truetype");
+    }
+    
+    </style> -->
   <style>
     /* ... Existing styles ... */
     body {
-      font-family: Arial, sans-serif;
+      font-family:  Arial, Helvetica, sans-serif;
       margin: 0;
       padding: 20px;
     }
@@ -275,19 +284,22 @@
         <input type="checkbox" class="categories" name="category" value="all" checked> All categories
       </label>
       <label>
-        <input type="checkbox" class="categories" name="category" value="tablets"> Tablet
+        <input type="checkbox" class="categories" name="category" value="HeadSets"> HeadSets
       </label>
       <label>
-        <input type="checkbox" class="categories" name="category" value="laptops"> Laptop
+        <input type="checkbox" class="categories" name="category" value="Laptop"> Laptop
       </label>
       <label>
-        <input type="checkbox" class="categories" name="category" value="headphones"> Headphones
+        <input type="checkbox" class="categories" name="category" value="Camera"> Camera
       </label>
       <label>
-        <input type="checkbox" class="categories" name="category" value="consoles"> Console
+        <input type="checkbox" class="categories" name="category" value="Speaker"> Speaker
       </label>
       <label>
-        <input type="checkbox" class="categories" name="category" value="other"> Other
+        <input type="checkbox" class="categories" name="category" value="Mouse"> Mouse
+      </label>
+      <label>
+        <input type="checkbox" class="categories" name="category" value="Gaming"> Gaming
       </label>
     </div>
   </div>
@@ -301,224 +313,1151 @@
 </div>
 
   <script>
-    let cart = [];
-
-function openCartPage() {
-  // Convert the cart array to JSON and store it in localStorage
-  localStorage.setItem("cart", JSON.stringify(cart));
-  // Open the cart page
-  window.location.href = "./cart.html";
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  const productListing = document.getElementById("product-list");
-  const cartIcon = document.getElementById("cart-icon");
-  const sortDropdown = document.getElementById("sort-dropdown");
-  const categoryCheckboxes = document.querySelectorAll("#category-filter input[name=category]");
-
-  // Sort products by price in ascending order
-  function sortProductsByPriceAsc() {
-    products.sort((a, b) => a.price - b.price);
-    renderProductListing();
-  }
-
-  // Sort products by price in descending order
-  function sortProductsByPriceDesc() {
-    products.sort((a, b) => b.price - a.price);
-    renderProductListing();
-  }
-
-  // Handle sort dropdown change
-  sortDropdown.addEventListener("change", () => {
-    const selectedValue = sortDropdown.value;
-    if (selectedValue === "asc") {
-      sortProductsByPriceAsc();
-    } else if (selectedValue === "desc") {
-      sortProductsByPriceDesc();
+    
+  let cart = [];
+  {
+    var products = [
+        {
+            "id": 1,
+            "title": "Microsoft Xbox Stereo Wired On Ear Headphones",
+            "Brand": "Xbox",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://assets.xboxservices.com/assets/ca/06/ca065500-cbae-4908-b6eb-b0d0515ad077.jpg?n=300350_Gallery-0_4_1350x759.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61lc4fL2v3L._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71n6TqMOMGL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61zYah7GqoL._SL1500_.jpg",
+            "image4": "https://assets.xboxservices.com/assets/34/b9/34b9bbf4-d7fc-4f20-94e3-78f8aa817a92.jpg?n=300350_Gallery-0_5_1350x759.jpg"
+        },
+        {
+            "id": 2,
+            "title": "Xbox Gaming Controller",
+            "Brand": "Xbox",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71XhN3d9GoL.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81UQjh+sW5S._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61Ug50Am8iS._SL1500_.jpg"
+        },
+        {
+            "id": 3,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Xbox Wireless Headset - Starfield Limited Edition",
+            "Brand": "Xbox",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/5139dLcudwL._SL1200_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/5139dLcudwL._SL1200_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/517KZvyJmUL._SL1200_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/51EsriN6xgL._SL1200_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/41gKk-1rMNL._SL1200_.jpg"
+        },
+        {
+            "id": 5,
+            "title": "PowerA Wired Gaming Controller for Xbox Series X/S, Xbox One, PC",
+            "Brand": "PowerA",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61ufrLSUkqL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61ufrLSUkqL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/51A7EPHqMgL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61b0Rpsg64S._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61wuVmxXdsS._SL1500_.jpg"
+        },
+        {
+            "id": 6,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 7,
+            "title": "Sennheiser HD 458 ANC Foldable Bluetooth Wireless Over Ear Headphones",
+            "Brand": "Sennheiser",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71zPb+U1ybL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71C5JaxdWpL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71FPMdrsj9L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61CbbupvZlL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61C9RjcbHdL._SL1500_.jpg"
+        },
+        {
+            "id": 8,
+            "title": "Razer Wolverine V2 - Wired Gaming Controller for Xbox Series X/S - Mercury",
+            "Brand": "Razer",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "White",
+            "price": "4",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71XhN3d9GoL.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81UQjh+sW5S._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61Ug50Am8iS._SL1500_.jpg"
+        },
+        {
+            "id": 9,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 10,
+            "title": "Sony WH-1000XM5 Wireless Industry Leading Active Noise Cancelling Headphones, 8 Mics for Clear Calling",
+            "Brand": "Sony",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61vJtKbAssL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61vJtKbAssL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61Gdpfwb4VL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71GMFf-4cwL._SL1500_.jpg"
+        },
+        {
+            "id": 11,
+            "title": "Redgear Pro Wireless Gamepad with 2.4GHz Wireless Technology, Integrated Dual Intensity Motor",
+            "Brand": "RedGear",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51fCmfd8CML._SL1000_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61E6XpCtz7L._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71ij0j4Mq7L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71ij0j4Mq7L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61pJOdZc0DL._SL1500_.jpg"
+        },
+        {
+            "id": 12,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 13,
+            "title": "PowerA FUSION Wired Stereo Gaming Headset with Mic for PlayStation 4",
+            "Brand": "PowerA",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61aa87dCr0L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/6160LkUxZVL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61D7ukWfEiL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71slxLjD4kL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51GOdWfJQRL._SL1500_.jpg"
+        },
+        {
+            "id": 14,
+            "title": "PowerA Enhanced Wired Gaming Controller for Xbox Series",
+            "Brand": "PowerA",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "Custom",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71YbHZxEvoL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71sa9dDJE7L._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/81m0qqvkD7L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71YHrXCIR7L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71YbHZxEvoL._SL1500_.jpg"
+        },
+        {
+            "id": 15,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 16,
+            "title": "Canon EOS 200D II 24.1MP Digital SLR Camera + EF-S 18-55mm f4 is STM Lens",
+            "Brand": "Cannon",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/41J1kYfM6PL.jpg",
+            "image1": "https://m.media-amazon.com/images/I/41d9gDCU8qL.jpg",
+            "image2": "https://m.media-amazon.com/images/I/41d9gDCU8qL.jpg",
+            "image3": "https://m.media-amazon.com/images/I/31i0ZxablUL.jpg",
+            "image4": "https://m.media-amazon.com/images/I/31i0ZxablUL.jpg"
+        },
+        {
+            "id": 17,
+            "title": "Canon EOS M50 Mark II + EF-M 15-45mm is STM Kit White, Optical Zoom",
+            "Brand": "Cannon",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/716A3phNPqL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61leWLjKLZL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61NiiK8VF4L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/711NSrwVcfL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61MBO5uKf9L._SL1500_.jpg"
+        },
+        {
+            "id": 18,
+            "title": "FUJIFILM X-T5 Mirrorless Camera with 16-80mm Lens Silver",
+            "Brand": "FUJIFILM",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "Grey",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/710891AErQL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/710891AErQL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71YzmhKImjL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71IjD2m2bJL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71thatMoB9L._SL1500_.jpg"
+        },
+        {
+            "id": 19,
+            "title": "Panasonic LUMIX G7 16.00 MP 4K Mirrorless Interchangeable Lens Camera Kit with 14-42 mm Lens (Black) with 3x Optical Zoom",
+            "Brand": "Panasonic",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "Black",
+            "price": "110.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/91xnO7qHAeL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71Gr-0BYORL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/51JCSvcKxdL.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81FE4WkscML._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71rQFGvbgqL._SL1500_.jpg"
+        },
+        {
+            "id": 20,
+            "title": "GoPro HERO11 Waterproof Action Camera with Front + Rear LCD Screens, 5.3K60 Ultra HD Video, HyperSmooth Resolution, 1080p Live Streaming",
+            "Brand": "GoPro",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/617sGSjmC1L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71z6zA281ML._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71eFxMu7N9L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71MMEnKrK-L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71s4AacE9nL._SL1500_.jpg"
+        },
+        {
+            "id": 21,
+            "title": "boAt Aavante Bar Mystiq Soundbar with 100W RMS Signature Sound",
+            "Brand": "boAt",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71m670zYOXL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61hdik39DdL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61Z0KF9CBWL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61WX1Qb96PL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61K63GrDZ6L._SL1500_.jpg"
+        },
+        {
+            "id": 22,
+            "title": "SKYBALL Party Pillar 1100, Tower Speaker with True 55 W, Drivers-Mid 4 X2+Woofer 5.25 X1,High end UHF Wireless Mic for Karaoke",
+            "Brand": "SKYBALL",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51Flyh2WBvL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61oy7JTxvcL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61jwsmkoogL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61pwLLD-pOL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61f35EAMfWL._SL1500_.jpg"
+        },
+        {
+            "id": 23,
+            "title": "Devialet Phantom II - 98 dB - Compact Wireless Speaker - Matte Black",
+            "Brand": "Devialet",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61mmOwHhxrL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/819-iwE+OhL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71cnyTEAWnL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81dOVna1sYL._SL1500_.jpg",
+            "image4": ""
+        },
+        {
+            "id": 24,
+            "title": "Sonos Arc Arcg1Us1Blk Hdmi 3D Sound Soundbar with Dolby Atmos",
+            "Brand": "Sonos",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71ty6sY0oPL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61mnsKw0dyL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61mnsKw0dyL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81lIVPzBtRL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/91TRR2D0TDL._SL1500_.jpg"
+        },
+        {
+            "id": 25,
+            "title": "Sony SA-D40 4.1 Channel Multimedia Speaker System with Bluetooth (Black)",
+            "Brand": "Sony",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61EW1LZ2NHL._SL1282_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/91RguL0UJjL._SL1500_.jpg",
+            "image2": "",
+            "image3": "",
+            "image4": ""
+        },
+        {
+            "id": 26,
+            "title": "Zebronics Zeb-Transformer-M Optical",
+            "Brand": "Zebronics",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/81tioCUVf4L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/81KDevJhhNL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/81oNby3lS9L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/91i-ZYTcf6L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/81yD0BBk2TL._SL1500_.jpg"
+        },
+        {
+            "id": 27,
+            "title": "Ambrane Trone Wired Gaming Mouse with 7 Programmable Buttons, 3-Speed Customizable 3600 DPI, Comfortable Grip, Breathing LED Lighting",
+            "Brand": "Ambrane",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61j3PlZuOLL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71PKCCuOuZL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71HVCLtFgvL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/713A3v3GODL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/715Z4PqXSfL._SL1500_.jpg"
+        },
+        {
+            "id": 28,
+            "title": "Logitech G102 Light Sync Gaming Wired Mouse with Customizable RGB Lighting, 6 Programmable Buttons, Gaming Grade Sensor, 8K DPI Tracking",
+            "Brand": "Logitech",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/21K6JMS8XyS.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61wWb5CXTwS._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/617Ozt+iEAS._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/51C+8jLJ4tS._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51OMQfHILKS._SL1388_.jpg"
+        },
+        {
+            "id": 29,
+            "title": "HyperX Pulsefire Haste Gaming USB Mouse Ultra Lightweight,60g, Hex Design, Honeycomb Shell, Hyperflex Cable, Up to 16000 DPI,6 Programmable Buttons (4P5E4AA)",
+            "Brand": "HyperX",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61Wvklx1FOL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71RXGReeBuL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71tK9rCQ6ML._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71nDmqt0qoL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71nDmqt0qoL._SL1500_.jpg"
+        },
+        {
+            "id": 30,
+            "title": "Logitech G502 Hero High Performance Wired Gaming Mouse, Hero 25K Sensor, 25,600 DPI, RGB, Adjustable Weights, 11 Programmable Buttons",
+            "Brand": "Logitech",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61mpMH5TzkL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71BYvNUoumL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71sgEIlSvfL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61vThyaOrHL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61ONyYGVSwL._SL1500_.jpg"
+        }
+    ]
+    var HeadSets=[
+        {
+            "id": 1,
+            "title": "Microsoft Xbox Stereo Wired On Ear Headphones",
+            "Brand": "Xbox",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://assets.xboxservices.com/assets/ca/06/ca065500-cbae-4908-b6eb-b0d0515ad077.jpg?n=300350_Gallery-0_4_1350x759.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61lc4fL2v3L._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71n6TqMOMGL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61zYah7GqoL._SL1500_.jpg",
+            "image4": "https://assets.xboxservices.com/assets/34/b9/34b9bbf4-d7fc-4f20-94e3-78f8aa817a92.jpg?n=300350_Gallery-0_5_1350x759.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Xbox Wireless Headset - Starfield Limited Edition",
+            "Brand": "Xbox",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/5139dLcudwL._SL1200_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/5139dLcudwL._SL1200_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/517KZvyJmUL._SL1200_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/51EsriN6xgL._SL1200_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/41gKk-1rMNL._SL1200_.jpg"
+        },
+        {
+            "id": 7,
+            "title": "Sennheiser HD 458 ANC Foldable Bluetooth Wireless Over Ear Headphones",
+            "Brand": "Sennheiser",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71zPb+U1ybL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71C5JaxdWpL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71FPMdrsj9L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61CbbupvZlL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61C9RjcbHdL._SL1500_.jpg"
+        },
+        {
+            "id": 10,
+            "title": "Sony WH-1000XM5 Wireless Industry Leading Active Noise Cancelling Headphones, 8 Mics for Clear Calling",
+            "Brand": "Sony",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61vJtKbAssL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61vJtKbAssL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61Gdpfwb4VL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71GMFf-4cwL._SL1500_.jpg"
+        },
+        {
+            "id": 13,
+            "title": "PowerA FUSION Wired Stereo Gaming Headset with Mic for PlayStation 4",
+            "Brand": "PowerA",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61aa87dCr0L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/6160LkUxZVL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61D7ukWfEiL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71slxLjD4kL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51GOdWfJQRL._SL1500_.jpg"
+        }
+    ]
+     var Mouse=[
+        {
+            "id": 26,
+            "title": "Zebronics Zeb-Transformer-M Optical",
+            "Brand": "Zebronics",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/81tioCUVf4L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/81KDevJhhNL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/81oNby3lS9L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/91i-ZYTcf6L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/81yD0BBk2TL._SL1500_.jpg"
+        },
+        {
+            "id": 27,
+            "title": "Ambrane Trone Wired Gaming Mouse with 7 Programmable Buttons, 3-Speed Customizable 3600 DPI, Comfortable Grip, Breathing LED Lighting",
+            "Brand": "Ambrane",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61j3PlZuOLL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71PKCCuOuZL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71HVCLtFgvL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/713A3v3GODL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/715Z4PqXSfL._SL1500_.jpg"
+        },
+        {
+            "id": 28,
+            "title": "Logitech G102 Light Sync Gaming Wired Mouse with Customizable RGB Lighting, 6 Programmable Buttons, Gaming Grade Sensor, 8K DPI Tracking",
+            "Brand": "Logitech",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/21K6JMS8XyS.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61wWb5CXTwS._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/617Ozt+iEAS._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/51C+8jLJ4tS._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51OMQfHILKS._SL1388_.jpg"
+        },
+        {
+            "id": 29,
+            "title": "HyperX Pulsefire Haste Gaming USB Mouse Ultra Lightweight,60g, Hex Design, Honeycomb Shell, Hyperflex Cable, Up to 16000 DPI,6 Programmable Buttons (4P5E4AA)",
+            "Brand": "HyperX",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61Wvklx1FOL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71RXGReeBuL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71tK9rCQ6ML._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71nDmqt0qoL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71nDmqt0qoL._SL1500_.jpg"
+        },
+        {
+            "id": 30,
+            "title": "Logitech G502 Hero High Performance Wired Gaming Mouse, Hero 25K Sensor, 25,600 DPI, RGB, Adjustable Weights, 11 Programmable Buttons",
+            "Brand": "Logitech",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61mpMH5TzkL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71BYvNUoumL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71sgEIlSvfL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61vThyaOrHL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61ONyYGVSwL._SL1500_.jpg"
+        }
+    ]
+     var Laptops=[
+        {
+            "id": 3,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 6,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 9,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 12,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },
+        {
+            "id": 15,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        }
+    ]
+     var Gaming=[
+        {
+            "id": 2,
+            "title": "Xbox Gaming Controller",
+            "Brand": "Xbox",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71XhN3d9GoL.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81UQjh+sW5S._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61Ug50Am8iS._SL1500_.jpg"
+        },
+        {
+            "id": 5,
+            "title": "PowerA Wired Gaming Controller for Xbox Series X/S, Xbox One, PC",
+            "Brand": "PowerA",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61ufrLSUkqL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61ufrLSUkqL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/51A7EPHqMgL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61b0Rpsg64S._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61wuVmxXdsS._SL1500_.jpg"
+        },
+        {
+            "id": 8,
+            "title": "Razer Wolverine V2 - Wired Gaming Controller for Xbox Series X/S - Mercury",
+            "Brand": "Razer",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "White",
+            "price": "4",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71XhN3d9GoL.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81UQjh+sW5S._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61Ug50Am8iS._SL1500_.jpg"
+        },
+        {
+            "id": 11,
+            "title": "Redgear Pro Wireless Gamepad with 2.4GHz Wireless Technology, Integrated Dual Intensity Motor",
+            "Brand": "RedGear",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51fCmfd8CML._SL1000_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61E6XpCtz7L._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71ij0j4Mq7L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71ij0j4Mq7L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61pJOdZc0DL._SL1500_.jpg"
+        },
+        {
+            "id": 14,
+            "title": "PowerA Enhanced Wired Gaming Controller for Xbox Series",
+            "Brand": "PowerA",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "Custom",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71YbHZxEvoL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71sa9dDJE7L._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/81m0qqvkD7L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71YHrXCIR7L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71YbHZxEvoL._SL1500_.jpg"
+        }
+    ]
+    var Speakers=[
+        {
+            "id": 21,
+            "title": "boAt Aavante Bar Mystiq Soundbar with 100W RMS Signature Sound",
+            "Brand": "boAt",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71m670zYOXL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61hdik39DdL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61Z0KF9CBWL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61WX1Qb96PL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61K63GrDZ6L._SL1500_.jpg"
+        },
+        {
+            "id": 22,
+            "title": "SKYBALL Party Pillar 1100, Tower Speaker with True 55 W, Drivers-Mid 4 X2+Woofer 5.25 X1,High end UHF Wireless Mic for Karaoke",
+            "Brand": "SKYBALL",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51Flyh2WBvL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61oy7JTxvcL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61jwsmkoogL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61pwLLD-pOL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61f35EAMfWL._SL1500_.jpg"
+        },
+        {
+            "id": 23,
+            "title": "Devialet Phantom II - 98 dB - Compact Wireless Speaker - Matte Black",
+            "Brand": "Devialet",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61mmOwHhxrL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/819-iwE+OhL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71cnyTEAWnL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81dOVna1sYL._SL1500_.jpg",
+            "image4": ""
+        },
+        {
+            "id": 24,
+            "title": "Sonos Arc Arcg1Us1Blk Hdmi 3D Sound Soundbar with Dolby Atmos",
+            "Brand": "Sonos",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71ty6sY0oPL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61mnsKw0dyL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61mnsKw0dyL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81lIVPzBtRL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/91TRR2D0TDL._SL1500_.jpg"
+        },
+        {
+            "id": 25,
+            "title": "Sony SA-D40 4.1 Channel Multimedia Speaker System with Bluetooth (Black)",
+            "Brand": "Sony",
+            "availability": "InStock",
+            "category": "Speaker",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/61EW1LZ2NHL._SL1282_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/91RguL0UJjL._SL1500_.jpg",
+            "image2": "",
+            "image3": "",
+            "image4": ""
+        }
+    ]
+    var Camera=[
+        {
+            "id": 16,
+            "title": "Canon EOS 200D II 24.1MP Digital SLR Camera + EF-S 18-55mm f4 is STM Lens",
+            "Brand": "Cannon",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/41J1kYfM6PL.jpg",
+            "image1": "https://m.media-amazon.com/images/I/41d9gDCU8qL.jpg",
+            "image2": "https://m.media-amazon.com/images/I/41d9gDCU8qL.jpg",
+            "image3": "https://m.media-amazon.com/images/I/31i0ZxablUL.jpg",
+            "image4": "https://m.media-amazon.com/images/I/31i0ZxablUL.jpg"
+        },
+        {
+            "id": 17,
+            "title": "Canon EOS M50 Mark II + EF-M 15-45mm is STM Kit White, Optical Zoom",
+            "Brand": "Cannon",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/716A3phNPqL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61leWLjKLZL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61NiiK8VF4L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/711NSrwVcfL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61MBO5uKf9L._SL1500_.jpg"
+        },
+        {
+            "id": 18,
+            "title": "FUJIFILM X-T5 Mirrorless Camera with 16-80mm Lens Silver",
+            "Brand": "FUJIFILM",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "Grey",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/710891AErQL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/710891AErQL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71YzmhKImjL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71IjD2m2bJL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71thatMoB9L._SL1500_.jpg"
+        },
+        {
+            "id": 19,
+            "title": "Panasonic LUMIX G7 16.00 MP 4K Mirrorless Interchangeable Lens Camera Kit with 14-42 mm Lens (Black) with 3x Optical Zoom",
+            "Brand": "Panasonic",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/91xnO7qHAeL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71Gr-0BYORL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/51JCSvcKxdL.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81FE4WkscML._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71rQFGvbgqL._SL1500_.jpg"
+        },
+        {
+            "id": 20,
+            "title": "GoPro HERO11 Waterproof Action Camera with Front + Rear LCD Screens, 5.3K60 Ultra HD Video, HyperSmooth Resolution, 1080p Live Streaming",
+            "Brand": "GoPro",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/617sGSjmC1L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71z6zA281ML._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71eFxMu7N9L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71MMEnKrK-L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/71s4AacE9nL._SL1500_.jpg"
+        }
+    ]
+     var popular=[
+        {
+            "id": 1,
+            "title": "Microsoft Xbox Stereo Wired On Ear Headphones",
+            "Brand": "Xbox",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://assets.xboxservices.com/assets/ca/06/ca065500-cbae-4908-b6eb-b0d0515ad077.jpg?n=300350_Gallery-0_4_1350x759.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61lc4fL2v3L._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71n6TqMOMGL._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61zYah7GqoL._SL1500_.jpg",
+            "image4": "https://assets.xboxservices.com/assets/34/b9/34b9bbf4-d7fc-4f20-94e3-78f8aa817a92.jpg?n=300350_Gallery-0_5_1350x759.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Xbox Wireless Headset - Starfield Limited Edition",
+            "Brand": "Xbox",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/5139dLcudwL._SL1200_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/5139dLcudwL._SL1200_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/517KZvyJmUL._SL1200_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/51EsriN6xgL._SL1200_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/41gKk-1rMNL._SL1200_.jpg"
+        },
+        {
+            "id": 7,
+            "title": "Sennheiser HD 458 ANC Foldable Bluetooth Wireless Over Ear Headphones",
+            "Brand": "Sennheiser",
+            "availability": "InStock",
+            "category": "HeadSets",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71zPb+U1ybL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71C5JaxdWpL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71FPMdrsj9L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61CbbupvZlL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61C9RjcbHdL._SL1500_.jpg"
+        },{
+            "id": 3,
+            "title": "Microsoft New Surface Pro9 13 Inch (33.03 cm) Intel Evo 12 Gen i5 / 8GB / 256GB Graphite",
+            "Brand": "Microsoft",
+            "availability": "InStock",
+            "category": "Laptop",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51L40XTsN+L._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61pVS7SwPvL._SL1080_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61TDr0bXlNL._SL1080_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/61I8ZX9pqAL._SL1080_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51wacAuDq0L._SL1080_.jpg"
+        },{
+            "id": 28,
+            "title": "Logitech G102 Light Sync Gaming Wired Mouse with Customizable RGB Lighting, 6 Programmable Buttons, Gaming Grade Sensor, 8K DPI Tracking",
+            "Brand": "Logitech",
+            "availability": "InStock",
+            "category": "Mouse",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/21K6JMS8XyS.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61wWb5CXTwS._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/617Ozt+iEAS._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/51C+8jLJ4tS._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/51OMQfHILKS._SL1388_.jpg"
+        },
+        {
+            "id": 17,
+            "title": "Canon EOS M50 Mark II + EF-M 15-45mm is STM Kit White, Optical Zoom",
+            "Brand": "Cannon",
+            "availability": "InStock",
+            "category": "Camera",
+            "color": "White",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/716A3phNPqL._SL1500_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61leWLjKLZL._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/61NiiK8VF4L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/711NSrwVcfL._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61MBO5uKf9L._SL1500_.jpg"
+        },
+        {
+            "id": 8,
+            "title": "Razer Wolverine V2 - Wired Gaming Controller for Xbox Series X/S - Mercury",
+            "Brand": "Razer",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "White",
+            "price": "4",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/71XhN3d9GoL.jpg",
+            "image1": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71UgN1GxqTS._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/81UQjh+sW5S._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61Ug50Am8iS._SL1500_.jpg"
+        },
+        {
+            "id": 11,
+            "title": "Redgear Pro Wireless Gamepad with 2.4GHz Wireless Technology, Integrated Dual Intensity Motor",
+            "Brand": "RedGear",
+            "availability": "InStock",
+            "category": "Gaming",
+            "color": "Black",
+            "price": "11.70",
+            "rating": "4.0",
+            "image": "https://m.media-amazon.com/images/I/51fCmfd8CML._SL1000_.jpg",
+            "image1": "https://m.media-amazon.com/images/I/61E6XpCtz7L._SL1500_.jpg",
+            "image2": "https://m.media-amazon.com/images/I/71ij0j4Mq7L._SL1500_.jpg",
+            "image3": "https://m.media-amazon.com/images/I/71ij0j4Mq7L._SL1500_.jpg",
+            "image4": "https://m.media-amazon.com/images/I/61pJOdZc0DL._SL1500_.jpg"
+        }
+    ];
     }
-  });
 
-  // Handle category checkboxes change
-  categoryCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", () => {
+  function openCartPage() {
+    // Convert the cart array to JSON and store it in localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+    // Open the cart page
+    window.location.href = "./cart.html";
+  }
+  function handleCategoryChange() {
       renderProductListing();
-    });
-  });
-
-  function addToCart(productId) {
-    const product = products.find((p) => p.id === productId);
-    if (product) {
-      const existingCartItem = cart.find((item) => item.id === product.id);
-      if (existingCartItem) {
-        existingCartItem.quantity++;
-      } else {
-        cart.push({ ...product, quantity: 1 });
-      }
-      updateCartIcon();
     }
-  }
+    function sortProductsByPriceAsc() {
+      products.sort((a, b) => a.price - b.price);
+      renderProductListing();
+    }
+   
 
-  function updateCartIcon() {
-    cartIcon.textContent = cart.length;
-  }
+      function sortProductsByPriceDesc() {
+        products.sort((a, b) => b.price - a.price);
+        renderProductListing();
+      }
 
-  function renderProductListing() {
-    productListing.innerHTML = "";
+    function renderProductListing() {
+      const productListing = document.getElementById("product-list");
+      const categoryCheckboxes = document.querySelectorAll("#category-filter input[name=category]");
 
-    const selectedCategories = Array.from(categoryCheckboxes)
-      .filter((checkbox) => checkbox.checked)
-      .map((checkbox) => checkbox.value);
+      const selectedCategories = Array.from(categoryCheckboxes)
+        .filter((checkbox) => checkbox.checked)
+        .map((checkbox) => checkbox.value);
 
-    let filteredProducts = selectedCategories.includes("all")
-      ? products
-      : products.filter((product) => selectedCategories.includes(product.category));
+      let filteredProducts = selectedCategories.includes("all")
+        ? products
+        : products.filter((product) => selectedCategories.includes(product.category));
 
-    filteredProducts.forEach((product) => {
-      const card = document.createElement("div");
-      card.classList.add("product-card");
+      productListing.innerHTML = "";
 
-      const image = document.createElement("img");
-      image.src = product.image;
-      image.alt = product.name;
-      card.appendChild(image);
+      filteredProducts.forEach((product) => {
+        const card = document.createElement("div");
+        card.classList.add("product-card");
 
-      const name = document.createElement("p");
-      name.textContent = product.name;
-      card.appendChild(name);
+        const image = document.createElement("img");
+        image.src = product.image;
+        image.alt = product.title;
+        card.appendChild(image);
 
-      const price = document.createElement("p");
-      price.textContent = "$" + product.price.toFixed(2);
-      card.appendChild(price);
+        const name = document.createElement("p");
+        name.textContent = product.title;
+        card.appendChild(name);
 
-      const addButton = document.createElement("button");
-      addButton.textContent = "Add to Cart";
-      addButton.addEventListener("click", () => addToCart(product.id));
-      card.appendChild(addButton);
+        const price = document.createElement("p");
+        price.textContent = "$" + product.price;
+        card.appendChild(price);
 
-      productListing.appendChild(card);
+        const addButton = document.createElement("button");
+        addButton.textContent = "Add to Cart";
+        addButton.addEventListener("click", () => addToCart(product.id));
+        card.appendChild(addButton);
+
+        productListing.appendChild(card);
+      });
+    }
+    function addToCart(productId) {
+        const product = products.find((p) => p.id === productId);
+        if (product) {
+          const existingCartItem = cart.find((item) => item.id === product.id);
+          if (existingCartItem) {
+            existingCartItem.quantity++;
+          } else {
+            cart.push({ ...product, quantity: 1 });
+          }
+          updateCartIcon();
+        }
+      }
+      function updateCartIcon() {
+        const cartIcon = document.getElementById("cart-icon");
+        cartIcon.textContent = cart.length;
+      }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    //   const productListing = document.getElementById("product-list");
+    //   const cartIcon = document.getElementById("cart-icon");
+      const sortDropdown = document.getElementById("sort-dropdown");
+      const categoryCheckboxes = document.querySelectorAll("#category-filter input[name=category]");
+    
+      
+
+      sortDropdown.addEventListener("change", () => {
+        const selectedValue = sortDropdown.value;
+        if (selectedValue === "asc") {
+          sortProductsByPriceAsc();
+        } else if (selectedValue === "desc") {
+          sortProductsByPriceDesc();
+        }
+      });
+
+    //   categoryCheckboxes.forEach((checkbox) => {
+    //     checkbox.addEventListener("change", () => {
+    //       renderProductListing();
+    //     });
+    //   });
+    categoryCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", handleCategoryChange);
     });
-  }
     
 
-    const products = [
-      {
-        id: 0,
-        name: "MacBook Pro M1 Pro",
-        price: 1999,
-        image: "./image1.jpg",
-        title: "The most powerful MacBook ever",
-        category: "laptops",
-      },
-      {
-        id: 1,
-        name: "Dell XPS 13 Plus",
-        price: 1299,
-        image: "./image1.jpg",
-        title: "The most powerful XPS ever",
-        category: "laptops",
-      },
-      {
-      id: 2,
-      name: "HP Spectre x360",
-      price: 1199,
-      image: "./image1.jpg",
-      title: "The most versatile Spectre ever",
-      category: "laptops",
-    },
-      {
-      id: 3,
-      name: "Lenovo Yoga 9i",
-      price: 1099,
-      image: "./image1.jpg",
-      title: "The most portable Yoga ever",
-      category: "laptops",
-    },
-    {
-      id: 4,
-      name: "Asus ZenBook Duo 14",
-      price: 1399,
-      image: "./image1.jpg",
-      title: "The most innovative ZenBook ever",
-      category: "laptops",
-    },
-    {
-      id: 5,
-      name: "Sony A7 IV",
-      price: 3500,
-      image: "./image1.jpg",
-      title: "The most advanced A7 ever",
-      category: "cameras",
-    },
-    {
-      id: 6,
-      name: "Nikon Z9",
-      price: 5499,
-      image: "./image1.jpg",
-      title: "The most powerful Z ever",
-      category: "cameras",
-    },
-    {
-      id: 7,
-      name: "Canon EOS R5",
-      price: 3899,
-      image: "./image1.jpg",
-      title: "The most versatile EOS R ever",
-      category: "cameras",
-    },
-    {
-      id: 8,
-      name: "Panasonic Lumix S5",
-      price: 2099,
-      image: "./image1.jpg",
-      title: "The most affordable full-frame mirrorless camera",
-      category: "cameras",
-    },
-    {
-      id: 9,
-      name: "Fujifilm X-T4",
-      price: 1699,
-      image: "./image1.jpg",
-      title: "The most advanced X-T ever",
-      category: "cameras",
-    },
-    {
-      id: 10,
-      name: "Apple Watch Series 7",
-      price: 399,
-      image: "./image1.jpg",
-      title: "The most advanced Apple Watch ever",
-      category: "smartwatches",
-    },
-    {
-      id: 11,
-      name: "Samsung Galaxy Watch 4",
-      price: 249,
-      image: "./image1.jpg",
-      title: "The most affordable Galaxy Watch ever",
-      category: "smartwatches",
-    },
-    {
-      id: 12,
-      name: "Garmin Venu 2",
-      price: 399,
-      image: "./image1.jpg",
-      title: "The most versatile Garmin smartwatch",
-      category: "smartwatches",
-    },
-    {
-        id: 13,
-        name: "Fitbit Sense",
-        price: 299,
-        image: "./image1.jpg",
-        title: "The most advanced Fitbit ever",
-        category: "smartwatches",
-      },
-    ];
-    // Sort products by price (ascending) by default
-  sortProductsByPriceAsc();
 
-// Render the product listing
-renderProductListing();
+      sortProductsByPriceAsc(products,Gaming,Mouse,Laptops,popular,HeadSets,Speakers);
+      renderProductListing(products,Gaming,Mouse,Laptops,popular,HeadSets,Speakers);
     });
   </script>
 </body>
