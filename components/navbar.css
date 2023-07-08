@@ -1,6 +1,10 @@
+#nav3{
+    margin-top: 10px;
+}
 
 #nav3>.wrappe{
     height: 70px;
+    
 }
 .wrappe>div{
     /* background-color: #eda515; */
@@ -169,7 +173,7 @@ body {
     height: fit-content;
     background-color: antiquewhite;
     padding: 0 20px;
-    line-height: .1;
+    line-height: 2.1;
     font-size: 14px;
 }
 
